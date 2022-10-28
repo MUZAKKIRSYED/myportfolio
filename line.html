@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line following robot</title>
+</head>
+<style>
+    *{
+        margin: 0;padding: 0;
+        /* background-image: url("https://images.unsplash.com/photo-1502239608882-93b729c6af43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");  */
+        background-color: rgb(18, 18, 19);
+        background-size: 100vw;
+    }
+    #head{
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        width: 100vw;
+        height: 3vw;
+        text-align: center;
+        text-decoration: double;
+        text-decoration-color: aqua;
+        border: 5px solid white;
+        border-radius: 20px;
+    }
+    #h2{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        height: 5vh;
+        margin-left: 3vw;margin-right: 2vw;
+        width: 31vw;
+        border-bottom: 5px solid white;
+        font-size: x-large;text-align: center;
+        text-decoration: solid;
+    }
+    #h3{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        height: 5vh;
+        width: 33vw;
+        font-size: x-large;
+        margin-left: 3vw;
+        border-bottom: 5px solid white;
+        text-align: center;margin-right: 2vw;
+        text-decoration:solid;
+    }
+    #h4,#h5,#h6,#h7{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        font-size: x-large;
+        height: 5vh;
+        width: 15vw;
+        margin-left: 3vw;
+        border-bottom: 5px solid white;
+        text-align: center;
+        margin-right: 2vw;
+    }
+    #h7{
+        background-color: rgb(0, 0, 0);
+        font-size: x-large;
+        color: white;
+        height: 5vh;
+        width: 10vw;
+        margin-left: 3vw;
+        border-bottom: 5px solid white;
+        text-align: center;
+        margin-right: 2vw;
+    }
+    #h8,#h13{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        height: 5vh;
+        width: 35vw;
+        margin-left: 3vw;
+        border-bottom: 5px solid white;
+        text-align: center;
+        margin-right: 2vw;
+        font-size: x-large;
+    }
+    #h9{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        width: 25vw;
+        height: 5vh;
+        font-size: x-large;
+        margin-left: 3vw;
+        border-bottom: 5px solid white;
+        text-align: center;
+        margin-right: 2vw;
+    }
+    #p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11,#p12{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        font-size: x-large;
+        width: 95vw;
+        margin-left: 3vw;
+        margin-right: 2vw;
+        border: 3px solid white;
+    }
+    #h1:hover,#h2:hover,#h3:hover,#h4:hover,#h5:hover,#h6:hover,#h7:hover,#h8:hover,#h9:hover,#h10:hover,#h11:hover,#h12:hover{
+        color: red;
+        border-color: blue;
+    }
+    #p1:hover,#p2:hover,#p3:hover,#p4:hover,#p5:hover,#p6:hover,#p7:hover,#p8:hover,#p9:hover,#p10:hover,#p11:hover,#p12:hover{
+       color: rgb(43, 43, 229);
+       border-color: red;
+    }
+    #ul{
+        margin-left: 3vw;
+        width: 20vw;
+        /* background-color: black; */
+        color: white;
+        margin-right: 7vw;
+        font-size: x-large;
+    }
+    #i1,#i2,#i3,#i4,#i5,#i6{
+        margin-left: 25vw;
+        width: 50vw;
+        height: 60vh;
+        margin-right: 3vw;
+        justify-items: center;
+        border: 4px solid rgb(21, 0, 255);
+    }
+    #footer1{
+        border: 2px solid white;
+        background-color: black;
+        width: 100vw;
+        height: 7vh;
+    }
+</style>
+<body>
+    <h1 id="head">LINE FOLLOWING ROBOT</h1><br>
+    <p id="p1">Line following robot is a simple autonomously guided robot that follows a line drawn on the ground to either detect a dark line on a white surface or a white line on a dark. The LFR is quite an interesting project to work on!</p>
+    <br><br>
+    <h1 id="h2">Working of a line following robot:</h1><br>
+    <p id="p2">line follower robot (LFR) follows a line, and in order to follow a line, robot must detect the line first. Now the question is how to implement the line sensing mechanism in a LFR. We all know that the reflection of light on the white surface is maximum and minimum on the black surface because the black surface absorbs maximum amount of light. So, we are going to use this property of light to detect the line. To detect light, either LDR (light-dependent resistor) or an IR sensor can be used. For this project, we are going with the IR sensor because of its higher accuracy. To detect the line, we place two IR sensors one on the left and other on the right side of the robot as marked in the diagram <br><br>
+    <p id="p3">Infrared sensors consist of two elements, a transmitter and a receiver. The transmitter is basically an IR LED, which produces the signal and the IR receiver is a photodiode, which senses the signal produced by the transmitter. The IR sensors emits the infrared light on an object, the light hitting the black part gets absorbed thus giving a low output but the light hitting the white part reflects back to the transmitter which is then detected by the infrared receiver, thereby giving an analog output. Using the stated principle, we control the movement of the robot by driving the wheels attached to the motors, the motors are controlled by a microcontroller.</p><br><br>
+    <h1 id="h3">How does a Line Follower Robot Navigates?</h1><br>
+    <p id="p4">A typical line follower robot has two sets of motors, let's call them left motor and right motor. Both motors rotate  on the basis of the signal received from the left and the right sensors respectively. The robot needs to perform 4 sets of motion which includes moving forward, turning left, turning right and coming to a halt. The description about the cases are given below.</p><br><br>
+    <h2 id="h4">Moving forward:</h2><br>
+    <p id="p5">In this case, when both the sensors are on a white surface and the line is between the two sensors, the robot should move forward, i.e., both the motors should rotate such that the robot moves in forward direction (actually both the motors should rotate in the opposite direction due to the placement of motors in our setup. But for the sake of simplicity, we will call the motors rotating forward.)</p><br><br>
+    <img src="https://circuitdigest.com/sites/default/files/inlineimages/u3/Line-Follower-Navigation.jpg" id="i1" alt="moving forward"><br><br><br>
+    <h2 id="h5">Turning left:</h2><br>
+    <p id="p6">In this case, the left sensor is on top of the dark line, whereas the right sensor is on the white part, hence the left sensor detects the black line and gives a signal, to the microcontroller. Since, signal comes from the left sensor, the robot should turn to the left direction. Therefore, the left motor rotates backwards and the right motor rotates in forward direction. Thus, the robot turns towards left side.</p><br><br>
+    <img src="https://circuitdigest.com/sites/default/files/inlineimages/u3/Line-Follower-Left-Navigation.png" id="i2" alt="turning left"><br><br><br>
+    <h2 id="h6">Turning right:</h2><br>
+    <p id="p7">This case is similar to the left case, but in this situation only the right sensor detects the line which means that the robot should turn in the right direction. To turn the robot towards the right direction, the left motor rotates forward and the right motor rotates backwards and as a result, the robot turns towards the right direction.</p><br><br>
+    <img src="https://circuitdigest.com/sites/default/files/inlineimages/u3/Line-Follower-Right-Navigation.png" id="i3" alt="Turning right"><br><br><br>
+    <h2 id="h7">Stop:</h2><br>
+    <p id="p8">In this case, both the sensors are on top of the line and they can detect the black line simultaneously, the microcontroller is fed to consider this situation as a process for halt. Hence, both the motors are stopped, which causes the robot to stop moving.</p><br><br>
+    <img src="https://circuitdigest.com/sites/default/files/inlineimages/u3/Line-Follower-STOP-Navigation.png" id="i4" alt="stopping"><br><br><br>
+    <h1 id="h8">Components required for the line following robot: </h1><br>
+    <ul id="ul">
+        <li>    Arduino Uno        - 1Nos</li>
+        <li>    L293D motor driver - 1Nos</li>
+        <li>    IR sensor module   -2 Nos</li>
+        <li>    7.4 or 9V battery  -1 Nos</li>
+        <li>    BO motor           - 2 Nos</li>
+        <li>    Motor wheel        - 2 Nos</li>
+        <li>    Castor wheel       - 1 Nos</li>
+        <li>    Hobby robot chassis - 1 Nos</li>
+        <li>    Wires</li>
+        <li>    Screw</li>
+    </ul><br><br>
+    <img id="i5" src="linefollowing.png" alt="Line following robot.img"><br><br><br>
+    <p id="p9">The circuit consists of mainly four parts: Two IR sensors, one motor drive, two motors, one Arduino, a battery and few connecting wires. The sensor senses the IR light reflected from the surface and feeds the output to the onboard op-amp comparator. When the sensor is situated over the white background, the light emitted by the sensor is reflected by the white ground and is received by the receiver. But when the sensor is above the black background, the light from the source doesn’t reflect to it. The sensor senses the intensity of reflected light to give an output. The sensor’s output is fed to the microcontroller, which gives commands to the motor driver to drive the motor accordingly. In our project, the Arduino Uno is programmed to make the robot move forward, turn right or turn left and stop according to the input coming from the sensor. The output of the Arduino is fed to the motor driver.</p><br><br>
+    <h2 id="h9">Assembling the line following robot:</h2><br>
+    <p id="p10">Once we have understood the connection of all the components, we can start assembling our LFR. <br> 1.To make this robot, first we need a robot body; here I am using a homemade chassis. You can either use a readymade chassis or build one yourself. <br>2. Now, place the BO motors to the chassis with the help of some hot glue. <br>3. Next step is to place the motor driver on chassis and connect the motor wires to the output of the motor driver.Next, bend the IR LED and sensor. <br>4. Then place the sensors on the downside of the robot, adjust the sensors according to the track width and robot width. Remember that one sensor is for left side detection and another is for the right side detection. <br>5. Now place the Arduino uno using glue and connect the sensor output pins to digital pin 2 and 4 of the Arduino. <br>6. Connect the VCC pins to 5volt and the ground pins to ground.Now, connect the enable pins of the motor driver to pin 5 and 8 of Arduino and connect the motor driver input pins to pin number 6, 7, 9 and 10 of Arduino respectively. <br>7. Finally, connect the battery with the circuit and place the battery on chassis. <br>8. Here, I have connected everything with jumper wires. To make a permanent setup, you can directly solder everything together. <br>9. Now turn the board upside down and with the help of hot glue gun, attach the castor wheels. <br>10. Finally, add the wheels. For extra safety, I have added a plastic sheet as a bumper too.</p><br><br><br>
+    <h id="h13">// Arduino Line Follower Robot Code </h>
+    <p id="p11"><br> <br>
+#define enA 5//Enable1 L293 Pin enA <br> 
+
+#define in1 6 //Motor1  L293 Pin in1 <br> 
+
+#define in2 7 //Motor1  L293 Pin in1 <br> 
+
+#define in3 9 //Motor2  L293 Pin in1 <br> 
+
+#define in4 10 //Motor2  L293 Pin in1 <br> 
+
+#define enB 8 //Enable2 L293 Pin enB <br> 
+
+#define R_S 4//ir sensor Right<br> 
+
+#define L_S 2 //ir sensor Left<br> 
+
+void setup(){ <br> 
+
+pinMode(R_S, INPUT); <br> 
+
+pinMode(L_S, INPUT); <br> 
+
+pinMode(enA, OUTPUT); <br> 
+
+pinMode(in1, OUTPUT); <br> 
+
+pinMode(in2, OUTPUT); <br> 
+
+pinMode(in3, OUTPUT); <br> 
+
+pinMode(in4, OUTPUT); <br> 
+
+pinMode(enB, OUTPUT);<br> 
+
+digitalWrite(enA, HIGH); <br> 
+
+digitalWrite(enB, HIGH); <br> 
+
+delay(1000);
+
+}<br> 
+
+void loop(){  <br> 
+
+if((digitalRead(R_S) == 0)&&(digitalRead(L_S) == 0)){forward();}   //if Right Sensor and Left Sensor are at White color then it will call forword function<br> 
+
+if((digitalRead(R_S) == 1)&&(digitalRead(L_S) == 0)){turnRight();} //if Right Sensor is Black and Left Sensor is White then it will call turn Right function  <br> 
+
+if((digitalRead(R_S) == 0)&&(digitalRead(L_S) == 1)){turnLeft();}  //if Right Sensor is White and Left Sensor is Black then it will call turn Left function<br> 
+
+if((digitalRead(R_S) == 1)&&(digitalRead(L_S) == 1)){Stop();} //if Right Sensor and Left Sensor are at Black color then it will call Stop function
+
+}<br> 
+
+void forward(){  //forword<br> 
+
+digitalWrite(in1, HIGH); //Right Motor forword Pin <br> 
+
+digitalWrite(in2, LOW);  //Right Motor backword Pin <br> 
+
+digitalWrite(in3, LOW);  //Left Motor backword Pin <br> 
+
+digitalWrite(in4, HIGH); //Left Motor forword Pin  
+
+}<br> 
+
+void turnRight(){ //turnRight<br> 
+
+digitalWrite(in1, LOW);  //Right Motor forword Pin <br> 
+
+digitalWrite(in2, HIGH); //Right Motor backword Pin  <br> 
+
+digitalWrite(in3, LOW);  //Left Motor backword Pin <br> 
+
+ digitalWrite(in4, HIGH); //Left Motor forword Pin 
+
+}<br> 
+
+void turnLeft(){ //turnLeft<br> 
+
+digitalWrite(in1, HIGH); //Right Motor forword Pin <br> 
+
+digitalWrite(in2, LOW);  //Right Motor backword Pin <br> 
+
+digitalWrite(in3, HIGH); //Left Motor backword Pin <br> 
+
+digitalWrite(in4, LOW);  //Left Motor forword Pin 
+
+}<br> 
+
+void Stop(){ //stop<br> 
+
+digitalWrite(in1, LOW); //Right Motor forword Pin <br> 
+
+digitalWrite(in2, LOW); //Right Motor backword Pin <br> 
+
+digitalWrite(in3, LOW); //Left Motor backword Pin <br> 
+
+digitalWrite(in4, LOW); //Left Motor forword Pin 
+
+}<br> <br><br>
+<p id="p12">all we need to do is place the robot on top of the black line and see it in action.</p>
+
+</p><br><br><br>
+    <img src="https://circuitdigest.com/sites/default/files/inlineimages/u3/Line-Follower-Robot-using-Arduino.jpg" alt="proje.img" id="i6"><br><br>
+<p id=""></p>
+<br>
+<!--Footer2(start)-->
+<table id="footer1" border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="black">
+    <tr>
+        <td>
+            <table border="0" cellpadding="15" cellspacing="0" width="90%" align="center">
+                <tr>
+                    <td width="80%" valign="top">
+                        <font face="Verdana" color="white" size="5" id="copy">
+                            ©Copyright 2050 by MUZAKKIR SYED.
+                            All rights reserved.
+                        </font>
+                    </td>
+
+                    <td width="10%">
+                        <font face="arial" color="black" size="2">
+                            <a href="#header" style="text-decoration:none">
+                                <font face="Verdana" color="white" size="4">
+                                    <b id="be">#BELIEVE</b>
+                                </font>
+                            </a>
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
